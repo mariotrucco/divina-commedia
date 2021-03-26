@@ -1,0 +1,42 @@
+{
+  "name": "divina-commedia",
+  "version": "0.0.1",
+  "description": "Dante's Divina Commedia on ElasticSearch",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "nodemon src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rimraf ./build && tsc",
+    "start": "npm run build && node -r config build/index.js",
+    "migrate": "npm run build && node -r config build/migration/migrate.js",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "format": "prettier --config .prettierrc 'src/**/*.ts' --write",
+    "format:check": "prettier --config .prettierrc 'src/**/*.ts' --check",
+    "format:watch": "onchange 'src/**/*.ts' -- prettier --write {{changed}}"
+  },
+  "author": "mario.trucco@gmail.com",
+  "license": "AGPL-3.0-or-later",
+  "devDependencies": {
+    "@types/config": "^0.0.36",
+    "@types/node": "^14.14.31",
+    "@typescript-eslint/eslint-plugin": "^4.15.1",
+    "@typescript-eslint/parser": "^4.15.1",
+    "eslint": "^7.20.0",
+    "eslint-plugin-no-loops": "^0.3.0",
+    "nodemon": "^2.0.7",
+    "onchange": "^7.1.0",
+    "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.5"
+  },
+  "dependencies": {
+    "@elastic/elasticsearch": "^7.12.0",
+    "config": "^3.2.4"
+  },
+  "volta": {
+    "node": "14.16.0",
+    "npm": "7.5.4"
+  }
+}

@@ -1,0 +1,6 @@
+{
+    "elasticsearch": {
+      "node": "http://localhost:9200",
+      "numberOfReplicas": 2
+    }
+}
