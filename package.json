@@ -4,7 +4,7 @@
   "description": "Dante's Divina Commedia on ElasticSearch",
   "main": "index.js",
   "scripts": {
-    "start:dev": "nodemon src/index.ts",
+    "start:watch": "nodemon src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf ./build && tsc",
     "start": "npm run build && node -r config build/index.js",
