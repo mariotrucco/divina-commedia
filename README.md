@@ -26,7 +26,7 @@ If you are running [Docker](https://www.docker.com/), you can use dependencies o
 docker-compose up
 ```
 
-The corrisponding configuration options are provided for `NODE_ENV=dev` in [config/dev.json](config/dev.json). 
+The corresponding configuration options are provided for `NODE_ENV=dev` in [config/dev.json](config/dev.json). 
 
 ## Migrations
 
