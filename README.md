@@ -122,10 +122,10 @@ The first results:
 NODE_ENV=dev npm run start
 ```
 
-### With auto realod (for development)
+### With hot realod (for development)
 
 ```bash
-NODE_ENV=dev npm run start:dev
+NODE_ENV=dev npm run start:watch
 ```
 
 ## Further Steps
