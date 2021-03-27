@@ -1,7 +1,8 @@
 import { Client, RequestParams } from '@elastic/elasticsearch';
+import config from 'config';
 
 async function search(): Promise<void> {
-  const client = new Client({ node: 'http://localhost:9200' });
+  const client = new Client({ node: config.get<string>('elasticsearch.node') });
   const params: RequestParams.Search = {
     index: 'verso',
     body: {
