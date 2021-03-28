@@ -86,7 +86,7 @@ Powered by [Jest](https://jestjs.io/) and [ts-jest](https://github.com/kulshekha
 npm run test
 ```
 
-### With coverage report:
+### With coverage report
 
 ```bash
 npm run test:coverage
@@ -144,7 +144,7 @@ NODE_ENV=dev npm run start:watch
 
 ## CI
 
-Powered by [GitHub Actions](https://github.com/features/actions), runs the checks on push on the main branches, and on PRs (see [.github/workflows](.github/workflows)). 
+Powered by [GitHub Actions](https://github.com/features/actions), runs the checks on push on the `main` branch, and on PRs (see [.github/workflows](.github/workflows)). 
 
 ## Further Steps
 
