@@ -1,25 +1,6 @@
-import { Client, RequestParams } from '@elastic/elasticsearch';
+import { Client } from '@elastic/elasticsearch';
 import config from 'config';
+import { search } from './search';
 
-async function search(): Promise<void> {
-  const client = new Client({ node: config.get<string>('elasticsearch.node') });
-  const params: RequestParams.Search = {
-    index: 'verso',
-    body: {
-      query: {
-        match: {
-          text: 'le Stelle.'
-        }
-      },
-      sort: {
-        terzina: { order: 'desc' }
-      }
-    }
-  };
-  const result = await client.search(params);
-  result.body.hits.hits.map((hit: { _source: unknown }) =>
-    console.log(hit._source)
-  );
-}
-
-search();
+const client = new Client({ node: config.get<string>('elasticsearch.node') });
+search(client, 'le Stelle.');

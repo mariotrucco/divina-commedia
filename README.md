@@ -78,7 +78,21 @@ npm run format:check
 npm run format:watch
 ```
 
-## Start the app
+## Testing
+
+Powered by [Jest](https://jestjs.io/) and [ts-jest](https://github.com/kulshekhar/ts-jest#readme)
+
+```bash
+npm run test
+```
+
+### With coverage report:
+
+```bash
+npm run test:coverage
+```
+
+## Starting the app
 
 Currently, this app only searches for  `"le Stelle."` in the Comedy's text, using our copy of [Elasticsearch's Italian Analyzer](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-lang-analyzer.html#italian-analyzer).
 
@@ -127,6 +141,10 @@ NODE_ENV=dev npm run start
 ```bash
 NODE_ENV=dev npm run start:watch
 ```
+
+## CI
+
+Powered by [GitHub Actions](https://github.com/features/actions), runs the checks on push on the main branches, and on PRs (see [.github/workflows](.github/workflows)). 
 
 ## Further Steps
 
