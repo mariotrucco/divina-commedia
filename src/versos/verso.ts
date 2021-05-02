@@ -1,5 +1,5 @@
-import { Title as CanticaTitle } from '../canticas/cantica';
-import { Title as CantoTitle } from '../cantos/canto';
+import { CanticaTitle } from '../canticas/cantica';
+import { CantoTitle } from '../cantos/canto';
 
 export interface Verso {
   cantica: CanticaTitle;

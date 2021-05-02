@@ -1,8 +1,8 @@
 import { Canto } from '../cantos/canto';
 
-export type Title = 'Inferno' | 'Purgatorio' | 'Paradiso';
+export type CanticaTitle = 'Inferno' | 'Purgatorio' | 'Paradiso';
 
 export interface Cantica {
-  title: Title;
+  title: CanticaTitle;
   cantos: Canto;
 }
