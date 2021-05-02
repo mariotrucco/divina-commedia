@@ -1,6 +1,6 @@
-import { mocked } from 'ts-jest/utils';
 import { Client } from '@elastic/elasticsearch';
-import { search } from './search';
+import { mocked } from 'ts-jest/utils';
+import { VersosService } from './versosService';
 jest.mock('@elastic/elasticsearch');
 
 describe('search', () => {
@@ -19,7 +19,8 @@ describe('search', () => {
   });
 
   it('should search for the input text on Elasticsearch', async () => {
-    await search(client, 'le Stelle.');
+    const target = new VersosService(client);
+    await target.search('le Stelle.');
 
     expect(client.search).toHaveBeenNthCalledWith(1, {
       index: 'verso',

@@ -1,6 +1,9 @@
 import { Client } from '@elastic/elasticsearch';
 import config from 'config';
-import { search } from './search';
+import { VersosService } from './versos/versosService';
 
 const client = new Client({ node: config.get<string>('elasticsearch.node') });
-search(client, 'le Stelle.');
+const versosService = new VersosService(client);
+versosService.search('le Stelle').then((result) => {
+  console.log(result.versos);
+});
