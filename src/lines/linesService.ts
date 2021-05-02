@@ -1,9 +1,9 @@
 import { Client, RequestParams } from '@elastic/elasticsearch';
-import { SearchResult, Verso } from './verso';
+import { SearchResult, Line } from './lines';
 import { CanticaTitle } from '../canticas/cantica';
 import { CantoTitle } from '../cantos/canto';
 
-export class VersosService {
+export class LinesService {
   client: Client;
 
   constructor(client: Client) {
@@ -14,9 +14,9 @@ export class VersosService {
     cantica: CanticaTitle,
     canto: CantoTitle,
     number: number
-  ): Promise<Verso> {
+  ): Promise<Line> {
     const params: RequestParams.Search = {
-      index: 'verso',
+      index: 'line',
       body: {
         query: {
           bool: {
@@ -36,7 +36,7 @@ export class VersosService {
 
   async search(text: string): Promise<SearchResult> {
     const params: RequestParams.Search = {
-      index: 'verso',
+      index: 'line',
       body: {
         query: {
           match: {
@@ -44,7 +44,7 @@ export class VersosService {
           }
         },
         sort: {
-          terzina: { order: 'desc' }
+          tercet: { order: 'desc' }
         },
         from: 0,
         size: 14233
@@ -52,7 +52,7 @@ export class VersosService {
     };
     const response = await this.client.search(params);
     return {
-      versos: response.body.hits.hits.map(
+      lines: response.body.hits.hits.map(
         (hit: { _source: unknown }) => hit._source
       )
     };

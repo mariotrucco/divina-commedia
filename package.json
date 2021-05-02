@@ -9,7 +9,7 @@
     "test:coverage": "npm run clean && jest --coverage",
     "build": "npm run clean && tsoa spec-and-routes",
     "start": "npm run build && ts-node src/server.ts",
-    "migrate": "npm run build && node -r config build/migration/migrate.js",
+    "migrate": "npm run build && ts-node src/migration/migrate.ts",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "format": "prettier --config .prettierrc 'src/**/*.ts' --write",

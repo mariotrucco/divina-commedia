@@ -1,14 +1,14 @@
 import { CanticaTitle } from '../canticas/cantica';
 import { CantoTitle } from '../cantos/canto';
 
-export interface Verso {
+export interface Line {
   cantica: CanticaTitle;
   canto: CantoTitle;
-  terzina: number;
+  tercet: number;
   number: number;
   text: string;
 }
 
 export interface SearchResult {
-  versos: Verso[];
+  lines: Line[];
 }

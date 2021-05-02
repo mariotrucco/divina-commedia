@@ -1,4 +1,4 @@
-import { Verso } from '../versos/verso';
+import { Line } from '../lines/lines';
 
 export type CantoTitle =
   | 'Canto I'
@@ -37,5 +37,5 @@ export type CantoTitle =
 
 export interface Canto {
   title: CantoTitle;
-  versos: Verso[];
+  lines: Line[];
 }

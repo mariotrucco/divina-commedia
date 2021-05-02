@@ -1,6 +1,6 @@
 import { Client } from '@elastic/elasticsearch';
 import { mocked } from 'ts-jest/utils';
-import { VersosService } from './versosService';
+import { LinesService } from './linesService';
 jest.mock('@elastic/elasticsearch');
 
 describe('search', () => {
@@ -19,11 +19,11 @@ describe('search', () => {
   });
 
   it('should search for the input text on Elasticsearch', async () => {
-    const target = new VersosService(client);
+    const target = new LinesService(client);
     await target.search('le Stelle.');
 
     expect(client.search).toHaveBeenNthCalledWith(1, {
-      index: 'verso',
+      index: 'line',
       body: {
         query: {
           match: {
@@ -31,8 +31,10 @@ describe('search', () => {
           }
         },
         sort: {
-          terzina: { order: 'desc' }
-        }
+          tercet: { order: 'desc' }
+        },
+        from: 0,
+        size: 14233
       }
     });
   });

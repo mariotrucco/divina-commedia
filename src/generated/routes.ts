@@ -11,7 +11,7 @@ import {
   TsoaResponse
 } from '@tsoa/runtime';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-import { VersosController } from './../versos/versosController';
+import { LinesController } from './../lines/linesController';
 import * as express from 'express';
 
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
@@ -73,12 +73,12 @@ const models: TsoaRoute.Models = {
     }
   },
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  Verso: {
+  Line: {
     dataType: 'refObject',
     properties: {
       cantica: { ref: 'CanticaTitle', required: true },
       canto: { ref: 'CantoTitle', required: true },
-      terzina: { dataType: 'double', required: true },
+      tercet: { dataType: 'double', required: true },
       number: { dataType: 'double', required: true },
       text: { dataType: 'string', required: true }
     },
@@ -96,8 +96,8 @@ export function RegisterRoutes(app: express.Router) {
   //      Please look into the "controllerPathGlobs" config option described in the readme: https://github.com/lukeautry/tsoa
   // ###########################################################################################################
   app.get(
-    '/canticas/:cantica/cantos/:canto/versos/:verso',
-    function VersosController_getVerso(request: any, response: any, next: any) {
+    '/canticas/:cantica/cantos/:canto/lines/:line',
+    function LinesController_getLine(request: any, response: any, next: any) {
       const args = {
         cantica: {
           in: 'path',
@@ -106,7 +106,7 @@ export function RegisterRoutes(app: express.Router) {
           ref: 'CanticaTitle'
         },
         canto: { in: 'path', name: 'canto', required: true, ref: 'CantoTitle' },
-        verso: { in: 'path', name: 'verso', required: true, dataType: 'double' }
+        line: { in: 'path', name: 'line', required: true, dataType: 'double' }
       };
 
       // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
@@ -118,9 +118,9 @@ export function RegisterRoutes(app: express.Router) {
         return next(err);
       }
 
-      const controller = new VersosController();
+      const controller = new LinesController();
 
-      const promise = controller.getVerso.apply(
+      const promise = controller.getLine.apply(
         controller,
         validatedArgs as any
       );
