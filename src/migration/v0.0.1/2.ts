@@ -30,11 +30,11 @@ export async function putData(): Promise<void> {
         for (const verso of terzina.children) {
           console.log(verso.text);
           const doc: RequestParams.Index = {
-            index: 'verso',
+            index: 'line',
             body: {
               cantica: cantica.name,
               canto: canto.name,
-              terzina: terzina.number,
+              tercet: terzina.number,
               number: verso.number,
               text: verso.text
             }

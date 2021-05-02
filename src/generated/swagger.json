@@ -1,0 +1,221 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"CanticaTitle": {
+				"type": "string",
+				"enum": [
+					"Inferno",
+					"Purgatorio",
+					"Paradiso"
+				]
+			},
+			"CantoTitle": {
+				"type": "string",
+				"enum": [
+					"Canto I",
+					"Canto II",
+					"Canto III",
+					"Canto IV",
+					"Canto V",
+					"Canto VI",
+					"Canto VII",
+					"Canto VIII",
+					"Canto IX",
+					"Canto X",
+					"Canto XI",
+					"Canto XII",
+					"Canto XIII",
+					"Canto XIV",
+					"Canto XV",
+					"Canto XVI",
+					"Canto XVII",
+					"Canto XVIII",
+					"Canto XX",
+					"Canto XXI",
+					"Canto XXII",
+					"Canto XXIII",
+					"Canto XXIV",
+					"Canto XXV",
+					"Canto XXVI",
+					"Canto XXVII",
+					"Canto XXVIII",
+					"Canto XIX",
+					"Canto XXX",
+					"Canto XXXI",
+					"Canto XXXII",
+					"Canto XXXIII"
+				]
+			},
+			"Line": {
+				"properties": {
+					"cantica": {
+						"$ref": "#/components/schemas/CanticaTitle"
+					},
+					"canto": {
+						"$ref": "#/components/schemas/CantoTitle"
+					},
+					"tercet": {
+						"type": "number",
+						"format": "double"
+					},
+					"number": {
+						"type": "number",
+						"format": "double"
+					},
+					"text": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"cantica",
+					"canto",
+					"tercet",
+					"number",
+					"text"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"SearchResult": {
+				"properties": {
+					"lines": {
+						"items": {
+							"$ref": "#/components/schemas/Line"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"lines"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "divina-commedia",
+		"version": "0.0.1",
+		"description": "Dante's Divina Commedia on ElasticSearch",
+		"license": {
+			"name": "AGPL-3.0-or-later"
+		},
+		"contact": {
+			"name": "mario.trucco@gmail.com"
+		}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/canticas/{cantica}/cantos/{canto}/lines/{line}": {
+			"get": {
+				"operationId": "GetLine",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Line"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"reason": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"reason"
+									],
+									"type": "object"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "cantica",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/CanticaTitle"
+						}
+					},
+					{
+						"in": "path",
+						"name": "canto",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/CantoTitle"
+						}
+					},
+					{
+						"in": "path",
+						"name": "line",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/search": {
+			"post": {
+				"operationId": "SearchLines",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/SearchResult"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"text": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"text"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}

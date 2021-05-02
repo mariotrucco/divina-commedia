@@ -92,43 +92,11 @@ npm run test
 npm run test:coverage
 ```
 
-## Starting the app
+## Starting the API
 
-Currently, this app only searches for  `"le Stelle."` in the Comedy's text, using our copy of [Elasticsearch's Italian Analyzer](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-lang-analyzer.html#italian-analyzer).
+OpenAPI-compliant REST APIs powered by [tsoa](https://github.com/lukeautry/tsoa#readme)
 
-The first results:
-
-```javascript
-{
-  cantica: 'Purgatorio',
-  canto: 'Canto XXXIII',
-  terzina: 49,
-  number: 145,
-  text: 'puro e disposto a salire a le stelle.'
-}
-{
-  cantica: 'Paradiso',
-  canto: 'Canto XXIV',
-  terzina: 49,
-  number: 147,
-  text: 'e come stella in cielo in me scintilla».'
-}
-{
-  cantica: 'Paradiso',
-  canto: 'Canto XXXIII',
-  terzina: 49,
-  number: 145,
-  text: 'l’amor che move il sole e l’altre stelle.'
-}
-{
-  cantica: 'Inferno',
-  canto: 'Canto XXXIV',
-  terzina: 47,
-  number: 139,
-  text: 'E quindi uscimmo a riveder le stelle.'
-}
-```
-
+![Screenshot: swagger OpenAPI DOC page generated with tsoa](readme_swagger.png)
 
 ### With optimized build
 
@@ -148,7 +116,6 @@ Powered by [GitHub Actions](https://github.com/features/actions), runs the check
 
 ## Further Steps
 
-* Expose a REST API with OpenAPI
 * Improve the analyzer and/or use NLP approaches to be better with [Dante's language](https://en.wikipedia.org/wiki/Dolce_Stil_Novo)
 * Allow saving notes 
 * Build a UI

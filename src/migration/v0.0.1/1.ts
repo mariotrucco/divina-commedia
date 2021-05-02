@@ -4,7 +4,7 @@ import config from 'config';
 const client = new Client({ node: config.get<string>('elasticsearch.node') });
 
 export async function setupIndex(): Promise<void> {
-  const name = 'verso';
+  const name = 'line';
   const version = 'v1';
   const index = `${name}-${version}`;
   await client.indices.create({
@@ -105,7 +105,7 @@ export async function setupIndex(): Promise<void> {
       properties: {
         cantica: { type: 'keyword' },
         canto: { type: 'keyword' },
-        terzina: { type: 'integer' },
+        tercet: { type: 'integer' },
         number: { type: 'integer' },
         text: { type: 'text', analyzer: 'dante' }
       }
