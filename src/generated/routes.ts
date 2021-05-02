@@ -12,6 +12,8 @@ import {
 } from '@tsoa/runtime';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { LinesController } from './../lines/linesController';
+// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+import { SearchController } from './../search/searchController';
 import * as express from 'express';
 
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
@@ -83,6 +85,14 @@ const models: TsoaRoute.Models = {
       text: { dataType: 'string', required: true }
     },
     additionalProperties: false
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  SearchResult: {
+    dataType: 'refObject',
+    properties: {
+      lines: { dataType: 'array', array: { ref: 'Line' }, required: true }
+    },
+    additionalProperties: false
   }
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 };
@@ -106,7 +116,14 @@ export function RegisterRoutes(app: express.Router) {
           ref: 'CanticaTitle'
         },
         canto: { in: 'path', name: 'canto', required: true, ref: 'CantoTitle' },
-        line: { in: 'path', name: 'line', required: true, dataType: 'double' }
+        line: { in: 'path', name: 'line', required: true, dataType: 'double' },
+        notFoundResponse: {
+          in: 'res',
+          name: '404',
+          required: true,
+          dataType: 'nestedObjectLiteral',
+          nestedProperties: { reason: { dataType: 'string', required: true } }
+        }
       };
 
       // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
@@ -121,6 +138,42 @@ export function RegisterRoutes(app: express.Router) {
       const controller = new LinesController();
 
       const promise = controller.getLine.apply(
+        controller,
+        validatedArgs as any
+      );
+      promiseHandler(controller, promise, response, undefined, next);
+    }
+  );
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  app.post(
+    '/search',
+    function SearchController_searchLines(
+      request: any,
+      response: any,
+      next: any
+    ) {
+      const args = {
+        searchInput: {
+          in: 'body',
+          name: 'searchInput',
+          required: true,
+          dataType: 'nestedObjectLiteral',
+          nestedProperties: { text: { dataType: 'string', required: true } }
+        }
+      };
+
+      // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+      let validatedArgs: any[] = [];
+      try {
+        validatedArgs = getValidatedArgs(args, request, response);
+      } catch (err) {
+        return next(err);
+      }
+
+      const controller = new SearchController();
+
+      const promise = controller.searchLines.apply(
         controller,
         validatedArgs as any
       );

@@ -14,7 +14,7 @@ export class LinesService {
     cantica: CanticaTitle,
     canto: CantoTitle,
     number: number
-  ): Promise<Line> {
+  ): Promise<Line | null> {
     const params: RequestParams.Search = {
       index: 'line',
       body: {
@@ -30,8 +30,9 @@ export class LinesService {
       }
     };
     const response = await this.client.search(params);
+    const hits = response.body.hits.hits;
     // TODO check that there is exactly 1 result
-    return response.body.hits.hits[0]._source;
+    return hits.length > 0 ? hits[0]._source : null;
   }
 
   async search(text: string): Promise<SearchResult> {
@@ -47,7 +48,7 @@ export class LinesService {
           tercet: { order: 'desc' }
         },
         from: 0,
-        size: 14233
+        size: 10000
       }
     };
     const response = await this.client.search(params);

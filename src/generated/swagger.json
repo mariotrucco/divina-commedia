@@ -80,6 +80,21 @@
 				],
 				"type": "object",
 				"additionalProperties": false
+			},
+			"SearchResult": {
+				"properties": {
+					"lines": {
+						"items": {
+							"$ref": "#/components/schemas/Line"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"lines"
+				],
+				"type": "object",
+				"additionalProperties": false
 			}
 		},
 		"securitySchemes": {}
@@ -107,6 +122,24 @@
 							"application/json": {
 								"schema": {
 									"$ref": "#/components/schemas/Line"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"reason": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"reason"
+									],
+									"type": "object"
 								}
 							}
 						}
@@ -140,6 +173,43 @@
 						}
 					}
 				]
+			}
+		},
+		"/search": {
+			"post": {
+				"operationId": "SearchLines",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/SearchResult"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"text": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"text"
+								],
+								"type": "object"
+							}
+						}
+					}
+				}
 			}
 		}
 	},
