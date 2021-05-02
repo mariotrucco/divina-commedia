@@ -5,16 +5,17 @@
   "main": "index.js",
   "scripts": {
     "start:watch": "nodemon src/index.ts",
-    "test": "rimraf ./build && jest",
-    "test:coverage": "rimraf ./build && jest --coverage",
-    "build": "rimraf ./build && tsc",
+    "test": "npm run clean && jest",
+    "test:coverage": "npm run clean && jest --coverage",
+    "build": "npm run clean && tsc",
     "start": "npm run build && node -r config build/index.js",
     "migrate": "npm run build && node -r config build/migration/migrate.js",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "format": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "format:check": "prettier --config .prettierrc 'src/**/*.ts' --check",
-    "format:watch": "onchange 'src/**/*.ts' -- prettier --write {{changed}}"
+    "format:watch": "onchange 'src/**/*.ts' -- prettier --write {{changed}}",
+    "clean": "rimraf ./build coverage"
   },
   "author": "mario.trucco@gmail.com",
   "license": "AGPL-3.0-or-later",
